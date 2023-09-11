@@ -20,6 +20,6 @@ jobs:
             - name: Install dependencies
               run: yarn
             - name: Allow permission
-              run: sudo chmod -R 777 /home/runner/work/getting-started-app/getting-started-app
+              run: sudo chmod -R 777 /etc
             - name: Run test
               run: yarn test
