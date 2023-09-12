@@ -1,4 +1,4 @@
-name: ci
+name: Deploy docker
 on:
     pull_request:
         branches:
