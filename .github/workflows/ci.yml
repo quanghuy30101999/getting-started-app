@@ -19,7 +19,7 @@ jobs:
                   cache: yarn
             - name: Install dependencies
               run: yarn
-            # - name: Allow permission
-            #   run: sudo chmod -R 777 /etc
+            - name: Allow permission
+              run: sudo chmod -R 777 /etc
             - name: Run test
               run: yarn test
