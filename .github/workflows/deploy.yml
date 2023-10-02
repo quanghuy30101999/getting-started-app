@@ -25,13 +25,11 @@ jobs:
                   file: ./Dockerfile
                   push: true
                   tags: ${{ secrets.DOCKERHUB_USERNAME }}/getting-started:latest
-            - name: install ssh keys
-              # https://stackoverflow.com/a/70447517
-              run: |
-                install -m 600 -D /dev/null ~/.ssh/id_rsa
-                echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-                echo "${{ secrets.SSH_PUBLIC_KEY }}" > ~/.ssh/id_rsa.pub
-                ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-            - name: connect and pull
-              run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} && docker run -dp 0.0.0.0:3000:3000 tranquanghuy30101999/getting-started:latest
+            - name: Docker pull & Run from hub
+              uses: appleboy/ssh-action@v1.0.0
+              with:
+                host: ${{ secrets.SSH_HOST }}
+                username: ${{ secrets.SSH_USER }}
+                key: ${{ secrets.SSH_PRIVATE_KEY }}
+                script: whoami
 
