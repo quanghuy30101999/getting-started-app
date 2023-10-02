@@ -34,6 +34,5 @@ jobs:
                 ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
             - name: connect and pull
               run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-            - name: cleanup
-              run: rm -rf ~/.ssh
-
+            - name: Run app
+              run: docker run -dp 0.0.0.0:3000:3000 tranquanghuy30101999/getting-started:latest
